@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Forms</title>
+<link rel="stylesheet" type="text/css" 
+href="../static/css/bootstrap.min.css"
+th:href="@{css/bootstrap.min.css}"/>
+
+<link rel="stylesheet" type="text/css" 
+href="../static/css/style.css"
+th:href="@{/css/style.css}"/>
+
+<link rel="stylesheet" type="text/css" 
+href="../static/css/fontawesome.min.css"
+th:href="@{css/fontawesome.min.css}"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body style="background-color: #f5f6fa;">
+
+<nav style="padding: 11px 50px;" class="navbar navbar-expand-lg navbar-light bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+                <a style="color:#FFF; font-size: 22px !important; font-family: initial;" class="nav-link" th:href="@{/}"> Home</a> 
+       </li>
+        <li class="nav-item">
+         <a style="color:#FFF; font-size: 22px !important; font-family: initial;" class="nav-link">|</a> 
+       </li>
+      <li class="nav-item">
+        <a style="color:#FFF; font-size: 20px !important; font-family: initial;" class="nav-link" th:href="@{/admin/form}">Add Suite <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      <a style="color:#FFF; font-size: 20px !important; font-family: initial;" th:href="@{/login?logout}" th:inline="text"> Logout
+     [[${#httpServletRequest.remoteUser}]]
+     </a>
+    </span>
+  </div>
+</nav>
+
+
+<div id="addInfo" style="padding: 30px 0; color: #ffffff">
+<div class="container">
+  <div class="row" style="border-top: 1px solid #ccc; padding-top: 6px;">
+         
+         
+          <div class="col-lg-4 containers" style="border-right: 1px solid #ccc;">
+          <h6 style="background:  #2980b9; padding: 10px; border-radius: 5px;">Add Pilote</h6>
+          <form th:action="@{/admin/savePilote}" method="post" style="background: #dfe4ea; border: 1px solid #c8c8c8; margin-top: -7px; padding: 16px; border-radius: 5px; color: aliceblue;">
+           <div class="form-group">
+          <input class="form-control" type="text" name="code" th:value="${pilote.code}" placeholder="Pilote code"/>
+        </div>
+           <div class="form-group">
+          <input class="form-control" type="text" name="name" th:value="${pilote.name}" placeholder="Pilote name"/>
+        </div>
+         <div class="form-group">
+          <input class="form-control" type="text" name="site" th:value="${pilote.site}" placeholder="Site"/>
+        </div>
+       <button style="color: #f7f1e3; background-color: #2980b9; !important; color: #FFF; padding: 5px 20px; border-radius: 5px;" type="submit">Save</button>
+       </form>
+         </div>
+         
+                  
+          <div class="col-lg-4 containers" style="border-right: 1px solid #ccc;">
+          <h6 style="background: #8e44ad; padding: 10px; border-radius: 5px;">Add Avion</h6>
+        <form th:action="@{/admin/saveAvion}" method="post" style="background: #dfe4ea; border: 1px solid #c8c8c8; margin-top: -7px; padding: 16px; border-radius: 5px; color: aliceblue;">
+         <div class="form-group">
+          <input class="form-control" type="text" name="code" th:value="${avion.code}" placeholder="Avion code"/>
+        </div>
+        <div class="form-group">
+          <input class="form-control" type="text" name="constructeur" th:value="${avion.constructeur}" placeholder="Constructeur"/>
+        </div>
+           <div class="form-group">
+          <input class="form-control" type="text" name="model" th:value="${avion.model}" placeholder="Model"/>
+        </div>
+          <div class="form-group">
+          <input class="form-control" type="text" name="capicite" th:value="${avion.capicite}" placeholder="Capicité"/>
+        </div>
+         <div class="form-group">
+          <input class="form-control" type="text" name="site" th:value="${avion.site}" placeholder="Site"/>
+        </div>
+       <button style="color: #f7f1e3; background-color: #8e44ad; !important; color: #FFF; padding: 5px 20px; border-radius: 5px;" type="submit">Save</button>
+       </form>
+         </div>
+         
+               <div class="col-lg-4 containers">
+        <h6 style="background: #d35400; padding: 10px; border-radius: 5px;">Add Vol</h6>
+        <form th:action="@{/admin/saveVol}" method="post" style="background: #dfe4ea; border: 1px solid #c8c8c8; margin-top: -7px; padding: 16px; border-radius: 5px; color: aliceblue;">
+   
+       <div class="form-group">
+          <input class="form-control" type="text" name="code" th:value="${vol.code}" placeholder="Code"/>
+        </div>
+        
+       <div class="form-group">
+          <input class="form-control" type="text" name="siteDepart" th:value="${vol.siteDepart}" placeholder="Site Départ"/>
+        </div>
+        
+          <div class="form-group">
+          <input class="form-control" type="text" name="siteArrive" th:value="${vol.siteArrive}" placeholder="Site D'arrivé"/>
+        </div>
+        
+         <div class="form-group">
+          <input class="form-control" type="text" name="heureDepart" th:value="${vol.heureDepart}" placeholder="Heure Départ"/>
+        </div>
+        
+        <div class="form-group">
+          <input class="form-control" type="text" name="heurArrive" th:value="${vol.heurArrive}" placeholder="Heure D'arrivé"/>
+        </div>
+    
+        <div class="form-group">    
+        <label for="pilote" style="color:#57606f; margin-left: 4px;">Choisir Pilote</label>
+         <select id="pilote" name="piloteCode">
+         <option th:each="pilote : ${pilotes}" th:value="${pilote.code}" th:text="${pilote.code}"></option>
+          </select>
+        </div>
+        
+            <div class="form-group">    
+        <label for="avion" style="color:#57606f; margin-left: 4px;">Choisir Avion</label>
+         <select id="avion" name="avionCode">
+         <option th:each="avion : ${avions}" th:value="${avion.code}" th:text="${avion.code}"></option>
+          </select>
+        </div>
+        
+       <button style="color: #f7f1e3; background-color: #d35400; !important; color: #fff; padding: 5px 20px; border-radius: 5px;" type="submit">Save</button>
+       </form>
+        </div>
+         
+         
+
+    </div>
+    </div></div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

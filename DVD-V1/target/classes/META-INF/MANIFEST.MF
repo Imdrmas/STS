@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: drmas
+Build-Jdk: 11.0.2
+Implementation-Title: DVD-V1
+Implementation-Version: 0.0.1
+Implementation-Vendor-Id: com.dvd
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/DVD-V1
+Created-By: Maven Integration for Eclipse
+

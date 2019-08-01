@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+   xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      layout:decorator="layout">   
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
+    <head>
+        <title>Admin Home</title>
+    </head>
+    <body>
+     <div layout:fragment="content">
+         <p>Welcome Administrator(<span sec:authentication="principal.username">Admin</span>)</p>
+         <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
+     </div>
+     <h1>This is admin home page</h1>
+    </body>    
+</html>

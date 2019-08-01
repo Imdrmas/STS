@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layout">
+<head>
+<meta charset="utf-8" />
+<title>Aeroport</title>
+<link rel="stylesheet" type="text/css"
+	href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+
+<link rel="stylesheet" type="text/css" href="../static/css/style.css"
+	th:href="@{/css/style.css}" />
+
+<link rel="stylesheet" type="text/css"
+	href="../static/css/fontawesome.min.css"
+	th:href="@{css/fontawesome.min.css}" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+	integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+	crossorigin="anonymous">
+
+</head>
+<body style="background-color: #f5f6fa;">
+
+	<nav style="padding: 0px 50px;"
+		class="navbar navbar-expand-lg navbar-light bg-dark">
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#navbarText" aria-controls="navbarText"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarText">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item"><a
+					style="color: #FFF; font-size: 22px !important; font-family: initial;"
+					class="nav-link" th:href="@{/}"> Home</a></li>
+				<li class="nav-item"><a
+					style="color: #FFF; font-size: 22px !important; font-family: initial;"
+					class="nav-link">|</a></li>
+				<li class="nav-item"><a
+					style="color: #FFF; font-size: 20px !important; font-family: initial;"
+					class="nav-link" th:href="@{/admin/form}"> Add Suite <span
+						class="sr-only">(current)</span></a></li>
+			</ul>
+			<span class="navbar-text"> <a
+				style="color: #FFF; font-size: 20px !important; font-family: initial;"
+				th:href="@{/login?logout}" th:inline="text"> Logout
+					[[${#httpServletRequest.remoteUser}]] </a>
+			</span>
+			<form class="form-inline my-2 my-lg-0" th:action="@{/pilote}" method="get">
+      <input  class="form-control mr-sm-3" th:value="${code}" name="code" type="search" 
+                     placeholder="Trouver mes vols" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Trouver</button>
+    </form>
+		</div>
+	</nav>
+
+
+        <div class="container">    
+          <h6 class="h2" style="border-bottom: 1px solid #ccc;">Suite Enoncé du Brief</h6>
+
+         </div> 
+       
+		
+
+		<div class="col-lg-4" style="border-right: 1px solid #ccc;">
+			<p style="font-size: 16px; padding-left: 10px; color: #1e272e;">
+				<i class="fas fa-list-ul"></i> La liste des pilotes:
+			</p>
+
+			<table class="table table-striped"
+				style="background: #ffffff; color: #1e272e; border: 1px solid #d7d7d7; font-size: 12px; font-family: initial;">
+				<thead style="background: #2980b9; color: #ffffff;">
+					<tr>
+						<th scope="col">Code</th>
+						<th scope="col">Name</th>
+						<th scope="col">Site</th>
+						<th scope="col">Edit</th>
+						<th scope="col">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="p : ${listPilotes}">
+						<td th:text="${p.code}"></td>
+						<td th:text="${p.name}"></td>
+						<td th:text="${p.site}"></td>
+						<td><a th:href="@{/admin/editPilote(id=${p.piloteId})}">Edit</a></td>
+						<td><a onClick="return confirm('Etes vous Sûre?')"
+							th:href="@{/admin/deletePilote(id=${p.piloteId})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="col-lg-4">
+			<p style="font-size: 16px; padding-left: 10px; color: #1e272e;">
+				<i class="fas fa-list-ul"></i> La liste des Avions:
+			</p>
+			<table class="table table-striped"
+				style="background: #ffffff; color: #1e272e; border: 1px solid #d7d7d7; font-size: 12px; font-family: initial;">
+				<thead style="background: #8e44ad; color: #ffffff;">
+					<tr>
+						<th scope="col">Code</th>
+						<th scope="col">Constructeur</th>
+						<th scope="col">Model</th>
+						<th scope="col">Capicité</th>
+						<th scope="col">Site</th>
+						<th scope="col">Edit</th>
+						<th scope="col">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="a : ${listAvions}">
+						<td th:text="${a.avionId}"></td>
+						<td th:text="${a.constructeur}"></td>
+						<td th:text="${a.model}"></td>
+						<td th:text="${a.capicite}"></td>
+						<td th:text="${a.site}"></td>
+						<td><a th:href="@{/admin/editAvion(id=${a.avionId})}">Edit</a></td>
+						<td><a onClick="return confirm('Etes vous Sûre?')"
+							th:href="@{/admin/deleteAvion(id=${a.avionId})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<div class="col-lg-4" style="border-left: 1px solid #ccc;">
+			<p style="font-size: 16px; padding-left: 10px; color: #1e272e;">
+				<i class="fas fa-list-ul"></i> La liste des Vols:
+			</p>
+
+			<table class="table table-striped"
+				style="background: #ffffff; color: #1e272e; border: 1px solid #d7d7d7; font-size: 12px; font-family: initial;">
+
+				<thead style="background: #d35400; color: #ffffff;">
+					<tr>
+						<th scope="col">Code</th>
+						<th scope="col">Site Départ</th>
+						<th scope="col">Site D'arrivé</th>
+						<th scope="col">Heure Départ</th>
+						<th scope="col">Heure D'arrivé</th>
+						<th scope="col">Pilote</th>
+						<th scope="col">Avion</th>
+						<th scope="col">Edit</th>
+						<th scope="col">Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="v : ${listVols}">
+						<td th:text="${v.volId}"></td>
+						<td th:text="${v.siteDepart}"></td>
+						<td th:text="${v.siteArrive}"></td>
+						<td th:text="${v.heureDepart}"></td>
+						<td th:text="${v.heurArrive}"></td>
+						<td th:text="${v.piloteCode}"></td>
+						<td th:text="${v.avionCode}"></td>
+						<td><a th:href="@{/admin/editVol(id=${v.volId})}">Edit</a></td>
+						<td><a onClick="return confirm('Etes vous Sûre?')"
+							th:href="@{/admin/deleteVol(id=${v.volId})}">Delete</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+</body>
+</html>
