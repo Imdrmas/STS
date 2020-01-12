@@ -1,5 +1,10 @@
 package com.dvd.ecommerce.impl;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +26,12 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	  @Override
-	    public Iterable<Product> getAllProducts() {
-	        return productRepository.findAll();
+	    public List<Product> getAllProducts() {
+	        List<Product> list = productRepository.findAll();
+	        List<Product> sortedList = list.stream()
+	        		.sorted(Comparator.comparing(Product::getId).reversed())
+	        		.collect(Collectors.toList());
+	        return sortedList;
 	    }
 
 	@Override
@@ -34,6 +43,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Product save(Product product) {
 		return productRepository.save(product);
+	}
+
+	@Override
+	public Optional<Product> findById(Long productId) {
+		return productRepository.findById(productId);
+	}
+
+	@Override
+	public void deleteById(Long productId) {
+		productRepository.deleteById(productId);
 	}
 
 	

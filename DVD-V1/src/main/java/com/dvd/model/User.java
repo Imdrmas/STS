@@ -3,6 +3,7 @@ package com.dvd.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -89,11 +90,14 @@ public class User{
     	joinColumns = @JoinColumn(name = "user_id"), 
     	inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
+    
+    @Column(columnDefinition="tinyint(1) default 1")
+    private Boolean active = true;
  
     public User() {}
 
 	public User(String name, String username, String email, String password, String nameOnCard, String cardNumber,
-			String expMonth, int cvv, String expYear, String address, String city, int zip, String state) {
+			String expMonth, int cvv, String expYear, String address, String city, int zip, String state, Boolean active) {
 		this.name = name;
 		this.username = username;
 		this.email = email;
@@ -107,8 +111,8 @@ public class User{
 		this.city = city;
 		this.zip = zip;
 		this.state = state;
+		this.active = active;
 	}
-
 
 	public Long getId() {
 		return id;
@@ -257,6 +261,14 @@ public class User{
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
     

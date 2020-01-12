@@ -11,11 +11,13 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.issamdrmas.dao.CategoryRepository;
+import com.issamdrmas.dao.DemoDao;
 import com.issamdrmas.dao.GameRepository;
 import com.issamdrmas.dao.MovieRepository;
 import com.issamdrmas.dao.MusicRepository;
 import com.issamdrmas.dao.UserRepository;
 import com.issamdrmas.model.Category;
+import com.issamdrmas.model.Demo;
 import com.issamdrmas.model.Game;
 import com.issamdrmas.model.Movie;
 import com.issamdrmas.model.Music;
@@ -44,6 +46,9 @@ public class DVDApplication implements CommandLineRunner {
 	private GameRepository gameRepository;
 	
 	@Autowired
+	private DemoDao demoDao;
+	
+	@Autowired
 	ProductService productService;
 	
 	public static void main(String[] args) {
@@ -53,6 +58,8 @@ public class DVDApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		demoDao.save(new Demo(1L, "text"));
 		
 		User user = new User(null, "username", "firstname", "lastname", "email@gmail");
 		User user2 = new User(null, "username2", "firstname2", "lastname2", "email@gmail2");

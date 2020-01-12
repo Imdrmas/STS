@@ -59,6 +59,8 @@ public class SignUpForm {
     private String state;
     
     private Set<String> role;
+    
+    private Boolean active = true;
 
 	public String getName() {
 		return name;
@@ -172,9 +174,13 @@ public class SignUpForm {
 		this.role = role;
 	}
 
-	
-    
-    
-    
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
+	}
+   
    
 }

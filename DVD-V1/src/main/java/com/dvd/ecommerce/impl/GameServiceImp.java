@@ -1,5 +1,10 @@
 package com.dvd.ecommerce.impl;
 
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -24,11 +29,6 @@ public class GameServiceImp implements GameService{
 	}
 
 	@Override
-	public @NotNull Iterable<Game> getAllGames() {
-		return gameRepository.findAll();
-	}
-
-	@Override
 	public Game getGame(@Min(value = 1, message = "Invalid game ID.") long id) {
 		return gameRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Game not found"));
 	}
@@ -36,6 +36,26 @@ public class GameServiceImp implements GameService{
 	@Override
 	public Game save(Game game) {
 		return gameRepository.save(game);
+	}
+
+	@Override
+	public void deleteById(Long productId) {
+		gameRepository.deleteById(productId);
+		
+	}
+
+	@Override
+	public Optional<Game> findById(Long gameId) {
+		return gameRepository.findById(gameId);
+	}
+
+	@Override
+	public @NotNull List<Game> getAllGames() {
+		List<Game> list = gameRepository.findAll();
+		List<Game> sortedList = list.stream().sorted(Comparator.comparing(Game::getId).reversed())
+				.collect(Collectors.toList());
+		return sortedList;
+				
 	}
 
 

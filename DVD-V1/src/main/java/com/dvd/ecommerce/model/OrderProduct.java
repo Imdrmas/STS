@@ -16,7 +16,7 @@ public class OrderProduct {
 	OrderProductPK pk;
 	
 	@Column(nullable = false)
-	private Integer quantity;
+	private Integer quantity = 1;
 
 	public OrderProduct() {
 		super();

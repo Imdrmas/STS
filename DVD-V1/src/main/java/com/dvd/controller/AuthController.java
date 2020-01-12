@@ -33,7 +33,6 @@ import com.dvd.repository.UserRepository;
 import com.dvd.security.jwt.JwtProvider;
 
 
-
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/dvd")
@@ -98,7 +97,8 @@ public class AuthController {
 			    signUpRequest.getAddress(), 
 			    signUpRequest.getCity(), 
 			    signUpRequest.getZip(), 
-			    signUpRequest.getState());
+			    signUpRequest.getState(),
+			    signUpRequest.getActive());
 		
 
 		Set<String> strRoles = signUpRequest.getRole();
@@ -123,4 +123,5 @@ public class AuthController {
 
 		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 	}
+	
 }

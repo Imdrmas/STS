@@ -42,8 +42,19 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-		<!-- For Working with Json Web Tokens (JWT) -->
+		<dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      </dependency>
+   
+ <!-- https://mvnrepository.com/artifact/ma.glasnost.orika/orika-core -->
+<dependency>
+    <groupId>ma.glasnost.orika</groupId>
+    <artifactId>orika-core</artifactId>
+    <version>1.5.4</version>
+</dependency>
+ 
+	<!-- For Working with Json Web Tokens (JWT) -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt</artifactId>
@@ -65,6 +76,10 @@
     <groupId>com.fasterxml.jackson.datatype</groupId>
     <artifactId>jackson-datatype-jsr310</artifactId>
 </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
 
 <dependency>
     <groupId>com.h2database</groupId>

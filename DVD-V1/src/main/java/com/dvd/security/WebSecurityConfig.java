@@ -63,6 +63,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/musics/**").permitAll()
                 .antMatchers("/api/games/**").permitAll()
                 .antMatchers("/api/orders/**").permitAll()
+                .antMatchers("/api/comments/**").permitAll()
+                .antMatchers("/api/replaycomments/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

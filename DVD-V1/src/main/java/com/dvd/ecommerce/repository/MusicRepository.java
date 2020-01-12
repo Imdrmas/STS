@@ -1,8 +1,10 @@
 package com.dvd.ecommerce.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import com.dvd.ecommerce.model.Music;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface MusicRepository extends CrudRepository<Music, Long> {
+import com.dvd.ecommerce.model.Music;
+@Repository
+public interface MusicRepository extends JpaRepository<Music, Long> {
 
 }

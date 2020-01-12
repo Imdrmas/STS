@@ -1,12 +1,22 @@
 package com.dvd.ecommerce.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="products")
@@ -27,6 +37,15 @@ public class Product {
 	private Double price;
 	
 	private String pictureUrl;
+	
+	@JsonManagedReference
+	@ManyToMany(fetch = FetchType.LAZY, cascade = {
+			CascadeType.PERSIST, CascadeType.MERGE
+	})
+	@JoinTable(name = "product_tags",
+	joinColumns = {@JoinColumn(name = "product_id")},
+	inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+	private Set<Tag> tags = new HashSet<Tag>();
 
 	public Product() {
 		super();
@@ -83,7 +102,16 @@ public class Product {
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
 	}
-	
+
+	public Set<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(Set<Tag> tags) {
+		this.tags = tags;
+	}
+
+
 	
 
 }
